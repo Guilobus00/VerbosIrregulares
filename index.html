@@ -50,6 +50,8 @@
                 var verboLeido = document.getElementById('caja').value;
                 //Si el texto escrito en la caja es igual al que hay que adivinar, se vuelve verde el botón resultado
                 document.getElementById('botonresultado').classList.remove('btn-dark');
+                document.getElementById('botonresultado').classList.remove('btn-success');
+                document.getElementById('botonresultado').classList.remove('btn-danger');
                 if (verbos[verboElegido][tiempoAAdivinar] == verboLeido) {
                     document.getElementById('botonresultado').classList.add('btn-success');
                     document.getElementById('botonresultado').innerText = "CORRECT";
