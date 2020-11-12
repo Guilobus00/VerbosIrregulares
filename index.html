@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Verbos Irregulares</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <style>
+        .cajatexto{
+            max-height: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <button id="castellano" class="btn btn-block btn-secondary">español</button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div id="boton1"></div>
+            </div>
+            <div class="col">
+                <div id="boton2"></div>
+            </div>
+            <div class="col">
+                <div id="boton3"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/listaVerbos.js"></script>
+    <script>
+        function eligeVerbo() {
+            var verboElegido = Math.floor(Math.random() * verbos.length);
+            //Obtengo un valor aleatorio del 0 al 2
+            var tiempoAAdivinar = Math.floor(Math.random() * 3); 
+            document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
+
+            //Hacemos que el texto de un botón no aparezca (al azar)
+            //Primer botón
+            if (tiempoAAdivinar == 0) {
+                document.getElementById("boton1").innerHTML = '<input id="caja" class="form-control cajatexto">';
+            } else {
+                document.getElementById("boton1").innerHTML = 
+                '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>';
+            }
+
+            //Segundo botón
+            if (tiempoAAdivinar == 1) {
+                document.getElementById("boton2").innerHTML = '<input id="caja" class="form-control cajatexto">';
+            } else {
+                document.getElementById("boton2").innerHTML = 
+                '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][1] + '</button>';
+            }
+
+            //Tercer botón
+            if (tiempoAAdivinar == 2) {
+                document.getElementById("boton3").innerHTML = '<input id="caja" class="form-control cajatexto">';
+            } else {
+                document.getElementById("boton3").innerHTML = 
+                '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][2] + '</button>';
+            }
+
+        }
+
+        eligeVerbo();
+
+    </script>
+</body>
+
+</html>
