@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
     <style>
         .cajatexto{
-            max-height: 25px;
+            max-height: 40px;
         }
     </style>
 
@@ -31,13 +31,32 @@
                 <div id="boton3"></div>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <button id="botonresultado" class="btn btn-block btn-dark" onclick="comprueba()">COMPROBAR</button>
+        </div>
     </div>
     <script src="js/listaVerbos.js"></script>
     <script>
+        var tiempoAAdivinar = 0;
+        var verboElegido = 0;
+        function comprueba(){
+            //Leemos el contenido de la caja que es lo que ha escrito el usuario
+            var verboLeido = document.getElementById('caja').value;
+            //Si el texto escrito en la caja es igual al que hay que adivinar, se vuelve verde el botón resultado
+            document.getElementById('botonresultado').classList.remove('btn-dark');
+            if (verbos[verboElegido][tiempoAAdivinar] == verboLeido){
+                document.getElementById('botonresultado').classList.add('btn-success');
+            } else { //Si el texto escrito en la caja es distinto al que hay que adivinar, se vuelve rojo el botón resultado
+                document.getElementById('botonresultado').classList.add('btn-danger');
+            }
+        }
+
         function eligeVerbo() {
-            var verboElegido = Math.floor(Math.random() * verbos.length);
+            verboElegido = Math.floor(Math.random() * verbos.length);
             //Obtengo un valor aleatorio del 0 al 2
-            var tiempoAAdivinar = Math.floor(Math.random() * 3); 
+            tiempoAAdivinar = Math.floor(Math.random() * 3); 
+            console.log(verbos[verboElegido][tiempoAAdivinar]);
             document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
 
             //Hacemos que el texto de un botón no aparezca (al azar)
