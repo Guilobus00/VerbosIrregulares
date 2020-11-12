@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Verbos Irregulares</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
     <style>
-        .cajatexto{
+        .cajatexto {
             max-height: 40px;
         }
     </style>
@@ -17,7 +18,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <button id="castellano" class="btn btn-block btn-secondary">español</button>
+            <button id="castellano" class="btn btn-block btn-primary">español</button>
         </div>
         <br>
         <div class="row">
@@ -40,24 +41,33 @@
     <script>
         var tiempoAAdivinar = 0;
         var verboElegido = 0;
-        function comprueba(){
-            //Leemos el contenido de la caja que es lo que ha escrito el usuario
-            var verboLeido = document.getElementById('caja').value;
-            //Si el texto escrito en la caja es igual al que hay que adivinar, se vuelve verde el botón resultado
-            document.getElementById('botonresultado').classList.remove('btn-dark');
-            if (verbos[verboElegido][tiempoAAdivinar] == verboLeido){
-                document.getElementById('botonresultado').classList.add('btn-success');
-                document.getElementById('botonresultado').innerText = "CORRECT";
-            } else { //Si el texto escrito en la caja es distinto al que hay que adivinar, se vuelve rojo el botón resultado
-                document.getElementById('botonresultado').classList.add('btn-danger');
-                document.getElementById('botonresultado').innerText = verbos[verboElegido][tiempoAAdivinar];
+        var jugando = 0; //Controla si estoy jugando o comprobando
+
+        function comprueba() {
+            if (jugando == 0) {
+                jugando = 1; //Para indicar que estoy chequeando y no sigue jugando
+                //Leemos el contenido de la caja que es lo que ha escrito el usuario
+                var verboLeido = document.getElementById('caja').value;
+                //Si el texto escrito en la caja es igual al que hay que adivinar, se vuelve verde el botón resultado
+                document.getElementById('botonresultado').classList.remove('btn-dark');
+                if (verbos[verboElegido][tiempoAAdivinar] == verboLeido) {
+                    document.getElementById('botonresultado').classList.add('btn-success');
+                    document.getElementById('botonresultado').innerText = "CORRECT";
+                } else { //Si el texto escrito en la caja es distinto al que hay que adivinar, se vuelve rojo el botón resultado
+                    document.getElementById('botonresultado').classList.add('btn-danger');
+                    document.getElementById('botonresultado').innerText = verbos[verboElegido][tiempoAAdivinar];
+                }
+            } else {
+                document.getElementById('botonresultado').classList.add('btn-dark');
+                document.getElementById('botonresultado').innerText = "COMPROBAR";
+                jugando = 0;
+                eligeVerbo();
             }
         }
 
         function eligeVerbo() {
             verboElegido = Math.floor(Math.random() * verbos.length);
-            //Obtengo un valor aleatorio del 0 al 2
-            tiempoAAdivinar = Math.floor(Math.random() * 3); 
+            tiempoAAdivinar = Math.floor(Math.random() * 3); //Obtengo un valor aleatorio del 0 al 2
             console.log(verbos[verboElegido][tiempoAAdivinar]);
             document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
 
