@@ -47,8 +47,10 @@
             document.getElementById('botonresultado').classList.remove('btn-dark');
             if (verbos[verboElegido][tiempoAAdivinar] == verboLeido){
                 document.getElementById('botonresultado').classList.add('btn-success');
+                document.getElementById('botonresultado').innerText = "CORRECT";
             } else { //Si el texto escrito en la caja es distinto al que hay que adivinar, se vuelve rojo el botón resultado
                 document.getElementById('botonresultado').classList.add('btn-danger');
+                document.getElementById('botonresultado').innerText = verbos[verboElegido][tiempoAAdivinar];
             }
         }
 
