@@ -1,4 +1,5 @@
 var verbos = [
+["be","was/were","been","ser/estar"],
 ["arise","arose","arisen","surgir"],
 ["awake","awoke","awoken","despertar(se)"],
 ["bear","bore","borne","soportar"],
